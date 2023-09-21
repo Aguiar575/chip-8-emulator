@@ -1,14 +1,10 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+pub const RAM_SIZE: usize = 4096;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub const SCREEN_HEIGHT: usize = 32;
+pub const SCREEN_WIDTH: usize = 64;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub struct EmulatorSettings {
+    pc: u16,
+    ram: [u8; RAM_SIZE],
+    screen: [bool; SCREEN_WIDTH * SCREEN_HEIGHT]
 }
