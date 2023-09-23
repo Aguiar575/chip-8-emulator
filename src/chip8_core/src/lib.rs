@@ -23,7 +23,7 @@ pub struct EmulatorSettings {
 }
 
 
-const START_ADDR: u16 = 0x200;
+const START_ADDR: u16 = 0x200; //512 in decimal
 
 impl EmulatorSettings {
     pub fn new() -> Self {
@@ -39,5 +39,15 @@ impl EmulatorSettings {
             dt: 0,
             st: 0,
         } 
+    }
+
+    pub fn push(&mut self, val: u16) {
+        self.stack[self.sp as usize] = val;
+        self.sp += 1;
+    }
+
+    pub fn pop(&mut self) {
+        self.sp -= 1;
+        self.stack[self.sp as usize];
     }
 }
