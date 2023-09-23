@@ -47,7 +47,7 @@ const START_ADDR: u16 = 0x200; //512 in decimal
 
 impl EmulatorSettings {
     pub fn new() -> Self {
-        Self {
+        let mut new_emu = Self {
             pc: START_ADDR,
             ram: [0; RAM_SIZE],
             screen: [false; SCREEN_WIDTH * SCREEN_HEIGHT],
@@ -58,7 +58,12 @@ impl EmulatorSettings {
             keys: [false; NUMBER_OF_KEYS],
             dt: 0,
             st: 0,
-        } 
+        };
+
+        new_emu.ram[..FONTSET_SIZE]
+            .copy_from_slice(&FONTSET);
+
+        new_emu
     }
 
     pub fn push(&mut self, val: u16) {
