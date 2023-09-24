@@ -89,4 +89,39 @@ impl EmulatorSettings {
         self.dt = 0;
         self.st = 0; self.ram[..FONTSET_SIZE].copy_from_slice(&FONTSET);
     }
+
+    pub fn tick(&mut self) {
+        //fetch 
+        let op: u16 = self.fetch();
+        //decode 
+        //execute
+        self.execute(op);
+
+    }
+
+    fn fetch(&mut self) -> u16  {
+        let higher_byte = self.ram[self.pc as usize] as u16;
+        let lower_byte = self.ram[(self.pc - 1) as usize] as u16;
+        let op = (higher_byte << 8) | lower_byte;
+        self.pc += 2;
+        op
+    }
+    
+   fn execute(&mut self, op: u16) {}
+
+    //handle the behavior of delay timer and sound timer
+    fn tick_timers(&mut self) {
+        if self.dt > 0 {
+            self.dt -= 1;
+        }
+
+        if self.st > 0 {
+            if self.st == 1 {
+                //need to iplement the audio
+            }
+            self.st -= 1;
+        }
+    }
+
+
 }
