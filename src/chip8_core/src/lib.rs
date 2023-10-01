@@ -419,7 +419,7 @@ impl EmulatorSettings {
     }
 
     //handle the behavior of delay timer and sound timer
-    fn tick_timers(&mut self) {
+    pub fn tick_timers(&mut self) {
         if self.dt > 0 {
             self.dt -= 1;
         }
