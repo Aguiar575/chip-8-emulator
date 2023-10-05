@@ -55,12 +55,12 @@ fn main() {
                 },
                 Event::KeyDown{keycode: Some(key), ..} => {
                     if let Some(k) = key2btn(key) {
-                        chip8.key_press(k, true);
+                        chip8.keypress(k, true);
                     }
                 },
                 Event::KeyUp{keycode: Some(key), ..} => {
                     if let Some(k) = key2btn(key) {
-                        chip8.key_press(k, false);
+                        chip8.keypress(k, false);
                     }
                 },
                 _ => ()
